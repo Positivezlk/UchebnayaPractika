@@ -1,0 +1,11 @@
+.card-img-bottom.full-image {
+    object-fit: contain;
+    max-height: 400px;
+    width: 100%;
+    height: auto;
+}
+
+.img-fluid {
+    border-radius: 0.75rem;
+    object-fit: cover;
+}

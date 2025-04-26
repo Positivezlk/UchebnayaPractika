@@ -1,0 +1,279 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Недели</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'fstpage/style.css' %}" rel="stylesheet">
+
+    <!-- Подключаем Prism.js для подсветки кода -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet" />
+</head>
+<body>
+<!-- Шапка -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">Учебная практика</a>
+        <div class="ms-auto">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-primary active" id="btn-week1">1-я неделя</button>
+                <button type="button" class="btn btn-outline-primary" id="btn-week2">2-я неделя</button>
+                <button type="button" class="btn btn-outline-primary" id="btn-week3">3-я неделя</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Карточки -->
+<div class="container py-5">
+    <div id="cards-container">
+        <!-- Карточки подставляются через JS -->
+    </div>
+</div>
+
+<!-- Prism.js для подсветки кода -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+<script>
+    const buttons = document.querySelectorAll('.btn-group .btn');
+    const cardsContainer = document.getElementById('cards-container');
+
+    const weekCards = {
+        1: [
+            {
+                title: "1.1 Задача линейного алгоритма",
+                text: "Катер плывёт по течению реки со скоростью 20 км/ч, а против течения — 16 км/ч. Найдите скорость течения.",
+                image: "{% static 'fstpage/week1.jpg' %}",
+                code: `def calculate_current_speed(boat_adrift_kph, boat_against_kph):
+    return boat_adrift_kph - boat_against_kph
+
+print(f'СКОРОСТЬ ТЕЧЕНИЯ: {calculate_current_speed(20, 16)} КМ/Ч')`
+            },
+            {
+                title: "1.2 Задача разветвляющегося алгоритма",
+                text: 'Если логин = "admin" и пароль = "qwerty", выведите "Доступ открыт", иначе — "Ошибка".',
+                image: "{% static 'fstpage/week1_2.jpg' %}",
+                code: `def login(login, password):
+    return 'Доступ открыт' if login == 'admin' and password == 'qwerty' else 'Ошибка'
+
+log, password = input('Введите логин и пароль через пробел: ').split('  ')
+print(login(log, password))
+`
+            },
+            {
+                title: "1.3 Задача циклического алгоритма",
+                text: "Найдите сумму цифр числа (например, для 123 сумма = 6).",
+                image: "{% static 'fstpage/week1_3.jpg' %}",
+                code: `def sum_of_digits(n):
+    return sum(int(digit) for digit in str(n))
+number = 123
+result = sum_of_digits(number)
+print(f"Сумма цифр числа {number} = {result}")
+`
+            },
+            {
+                title: "1.4 Задача на проектирование классов",
+                text: "Создайте класс Animal и подкласс Dog, который наследует от Animal. Добавьте методы для имитации звуков животных.",
+                image: "{% static 'fstpage/week1_4.jpg' %}",
+                code: `class Animal:
+    def __init__(self, name, sex, age):
+        self.name = name
+        self.sex = sex
+        self.age = age
+
+    def make_sound(self):
+        raise NotImplementedError("Подклассы должны реализовывать этот метод")
+
+class Dog(Animal):
+    def __init__(self, name, sex, age):
+        super().__init__(name, sex, age)
+
+    def make_sound1(self):
+        return "Гав!"
+    
+    def make_sound2(self):
+        return "Тяв!"
+
+class Owner:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self.pets = []
+
+    def adopt_pet(self, pet: Animal):
+        self.pets.append(pet)
+
+    def show_pets(self):
+        for pet in self.pets:
+            print(f"{pet.name} - {pet.sex}, {pet.age} лет")
+
+
+
+my_dog = Dog("Бобик", "Мужской", 7)
+owner1 = Owner("Иван", 30)
+owner1.adopt_pet(my_dog)
+owner1.show_pets()
+print(f"Мою собаку зовут: {my_dog.name}, её пол: {my_dog.sex}, её возраст: {my_dog.age}. Она говорит: {my_dog.make_sound1()}, но иногда говорит: {my_dog.make_sound2()}")
+`
+            },
+            {
+                title: "1.5 Задача с графическим интерфейсом",
+                text: "Разработайте приложение для ввода и проверки пин-кода с графическим интерфейсом.",
+                image: "{% static 'fstpage/week1_5.jpg' %}",
+                code: `namespace WinFormsApp4
+{
+	public partial class Form1 : Form
+	{
+		private string correctPin = "1234";
+
+		public Form1()
+		{
+			InitializeComponent();
+			button1.Click += new EventHandler(button1_Click);
+
+		}
+
+		private void Form1_Load(object sender, EventArgs e)
+		{
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			if (textBoxPin.Text == correctPin)
+			{
+				MessageBox.Show("Доступ разрешён!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			else
+			{
+				MessageBox.Show("Неверный пин-код!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				textBoxPin.Clear();
+				textBoxPin.Focus();
+			}
+		}
+
+		private void label1_Click(object sender, EventArgs e)
+		{
+		}
+	}
+}
+`
+            }
+        ],
+        2: [
+    {
+        title: "Разработка АИС “Отдел кадров”",
+        text: 'Ниже представлены скриншоты интерфейса и функционала программы “Отдел кадров”.',
+        gallery: [
+            "{% static 'fstpage/gallery1.png' %}",
+            "{% static 'fstpage/gallery2.png' %}",
+            "{% static 'fstpage/gallery3.png' %}",
+            "{% static 'fstpage/gallery4.png' %}",
+            "{% static 'fstpage/gallery5.png' %}",
+            "{% static 'fstpage/gallery6.png' %}",
+            "{% static 'fstpage/gallery7.png' %}",
+            "{% static 'fstpage/gallery8.png' %}",
+            "{% static 'fstpage/gallery9.png' %}"
+        ]
+    }
+            ],
+
+            3: [
+    {
+        title: "Мобильное приложение",
+        text: "Разработка мобильного приложения",
+        gallery: [
+            "{% static 'fstpage/plan1.jpg' %}",
+            "{% static 'fstpage/plan2.jpg' %}",
+            "{% static 'fstpage/plan3.jpg' %}",
+            "{% static 'fstpage/plan4.jpg' %}"
+        ]
+    },
+    {
+        title: "Данные по тестированию",
+        text: "Список тестов",
+        gallery: [
+            "{% static 'fstpage/realization1.jpg' %}",
+            "{% static 'fstpage/realization2.jpg' %}",
+            "{% static 'fstpage/realization3.jpg' %}",
+            "{% static 'fstpage/realization4.jpg' %}",
+            "{% static 'fstpage/realization5.jpg' %}",
+            "{% static 'fstpage/realization6.jpg' %}",
+            "{% static 'fstpage/realization7.jpg' %}"
+        ]
+    },
+    {
+        title: "Оценка програмного продукта с точки зрения эффективности использования ресурсов",
+        text: 'Для приложения "Отдел кадров" текущая реализация демонстрирует высокую эффективность. Данные о сотрудниках не пропадают'
+    },
+    {
+        title: "Паттерн проектирования",
+        text: "В данном проекте я применил паттерн 'Singelton' для БД. Singleton гарантирует, что в приложении будет только один экземпляр объекта для работы с базой данных. Это предотвращает создание множества подключений к базе данных. Поскольку все запросы к базе данных проходят через один экземпляр, легче обеспечить согласованность операций."
+    },
+    {
+        title: "Пути дальнейшей оптимизации",
+        text: "В дальнейшем нужно будет оптимизировать запросы к БД, адаптировать UI под все устройства."
+    },
+    {
+        title: "Разработка сайта",
+        text: "Сайт разработан на языке Python, используя фреймворк Django. В качестве сборщика проекта используется Pip, в качестве пакетного менеджера - pipenv/poetry. Библиотека для компонентов - Django Rest Framework, стилизация - Bootstrap, маршрутизация - встроенные возможности Django, управление состоянием - использование сессий и кэша Django, линтинг - flake8"
+    }
+]
+
+    };
+
+    function renderCards(week) {
+    cardsContainer.innerHTML = '';
+    weekCards[week].forEach(card => {
+        let imagesHTML = '';
+        if (card.gallery) {
+            imagesHTML = '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-3">';
+            card.gallery.forEach(img => {
+                imagesHTML += `
+                    <div class="col">
+                        <div class="card shadow-sm h-100">
+                            <img src="${img}" class="img-fluid rounded" alt="галерея">
+                        </div>
+                    </div>`;
+            });
+            imagesHTML += '</div>';
+        }
+
+        const cardHTML = `
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">${card.title}</h5>
+                            <p class="card-text">${card.text}</p>
+                        </div>
+                        ${card.image ? `<img src="${card.image}" class="card-img-bottom full-image" alt="картинка">` : ''}
+                        ${imagesHTML}
+                        ${card.code ? `
+                        <div class="card-body">
+                            <pre><code class="language-python">${card.code}</code></pre>
+                        </div>` : ''}
+                    </div>
+                </div>
+            </div>`;
+        cardsContainer.innerHTML += cardHTML;
+    });
+    Prism.highlightAll();
+}
+
+
+
+    // Инициализация
+    renderCards(1);
+
+    buttons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderCards(index + 1);
+        });
+    });
+</script>
+</body>
+</html>
