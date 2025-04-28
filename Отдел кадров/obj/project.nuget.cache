@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "y0Mk6iYMh5g=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\k9118\\Desktop\\desktop\\1_UCHEBNAYA_PRAKTIKA\\Курочкина Дарья\\10-я практическая\\Отдел по купле-продажи недвижимости ОАО «Биржа труда»\\Отдел по купле-продажи недвижимости ОАО «Биржа труда».vbproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\k9118\\.nuget\\packages\\system.configuration.configurationmanager\\9.0.4\\system.configuration.configurationmanager.9.0.4.nupkg.sha512",
+    "C:\\Users\\k9118\\.nuget\\packages\\system.data.oledb\\9.0.4\\system.data.oledb.9.0.4.nupkg.sha512",
+    "C:\\Users\\k9118\\.nuget\\packages\\system.diagnostics.eventlog\\9.0.4\\system.diagnostics.eventlog.9.0.4.nupkg.sha512",
+    "C:\\Users\\k9118\\.nuget\\packages\\system.diagnostics.performancecounter\\9.0.4\\system.diagnostics.performancecounter.9.0.4.nupkg.sha512",
+    "C:\\Users\\k9118\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.4\\system.security.cryptography.protecteddata.9.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

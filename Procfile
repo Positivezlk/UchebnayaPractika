@@ -1,1 +1,1 @@
-web: cd task_3/uchebprac && gunicorn uchebprac.wsgi:application
+web: cd task_3 && gunicorn uchebprac.wsgi:application
